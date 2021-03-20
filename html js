@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="square"></div>
+    <div class="form-group">
+  <label for="slideAll">All corners:</label>
+  <input type="range" id="slideAll" min="0" max="100" value="0" />
+</div>
+
+
+<div class="form-group">
+  <label for="slideTL">Top Left Corner:</label>
+  <input type="range" id="slideTL" min="0" max="100" value="0" />
+</div>
+<div class="form-group">
+  <label for="slideTR">Top Right Corner:</label>
+  <input type="range" id="slideTR" min="0" max="100" value="0" />
+</div>
+<div class="form-group">
+  <label for="slideBR">Bottom Right Corner:</label>
+  <input type="range" id="slideBR" min="0" max="100" value="0" />
+</div>
+<div class="form-group">
+  <label for="slideBL">Bottom Left Corner:</label>
+  <input type="range" id="slideBL" min="0" max="100" value="0" />
+</div>
+
+<script>
+    const slideAll = document.getElementById("slideAll");
+const slideTL = document.getElementById("slideTL");
+const slideTR = document.getElementById("slideTR");
+const slideBR = document.getElementById("slideBR");
+const slideBL = document.getElementById("slideBL");
+const root = document.documentElement;
+let tl = 0,
+  tr = 0,
+  br = 0,
+  bl = 0;
+
+slideAll.addEventListener("input", (e) => {
+  tl = e.target.value;
+  tr = e.target.value;
+  br = e.target.value;
+  bl = e.target.value;
+  slideTL.value = 0;
+  slideTR.value = 0;
+  slideBR.value = 0;
+  slideBL.value = 0;
+  setRadius();
+});
+
+slideTL.addEventListener("input", (e) => {
+  resetZero();
+  tl = e.target.value;
+  setRadius();
+});
+slideTR.addEventListener("input", (e) => {
+  resetZero();
+  tr = e.target.value;
+  setRadius();
+});
+slideBR.addEventListener("input", (e) => {
+  resetZero();
+  br = e.target.value;
+  setRadius();
+});
+slideBL.addEventListener("input", (e) => {
+  resetZero();
+  bl = e.target.value;
+  setRadius();
+});
+
+function setRadius() {
+  radius = `${tl}% ${tr}% ${br}% ${bl}%`;
+  root.style.setProperty("--radius", radius);
+}
+
+function resetZero() {
+  if (slideAll.value > 0) {
+    sliderAll.value = 0;
+    tl = 0;
+    tr = 0;
+    br = 0;
+    bl = 0;
+  }
+}
+</script>
+</body>
+</html>
